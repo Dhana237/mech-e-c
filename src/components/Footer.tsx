@@ -127,7 +127,7 @@ const Footer = () => {
         <div className="border-t border-primary-light py-6">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="text-primary-foreground/60 text-sm mb-4 md:mb-0">
-              © 2025 SING MECH E&C PTE LTD. All rights reserved.
+              © 2024 SING MECH E&C PTE LTD. All rights reserved.
             </div>
             <div className="flex space-x-6 text-sm">
               <a href="#" className="text-primary-foreground/60 hover:text-accent transition-colors duration-300">

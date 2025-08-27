@@ -20,6 +20,7 @@ const Navigation = () => {
     { name: 'Expertise', href: '#expertise' },
     { name: 'Systems', href: '#systems' },
     { name: 'Technical Guidance', href: '#technical' },
+    { name: 'Career', href: '/career' },
     { name: 'Contact', href: '#contact' },
   ];
 
@@ -59,7 +60,11 @@ const Navigation = () => {
               onClick={() => setIsOpen(!isOpen)}
               className="text-foreground hover:text-accent transition-colors"
             >
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+                {isOpen ? (
+                <X className={`h-6 w-6 ${isScrolled ? 'text-foreground' : 'text-white'}`} />
+                ) : (
+                <Menu className={`h-6 w-6 ${isScrolled ? 'text-foreground' : 'text-white'}`} />
+                )}
             </button>
           </div>
         </div>
