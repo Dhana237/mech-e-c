@@ -15,13 +15,13 @@ const Navigation = () => {
   }, []);
 
   const navItems = [
-    { name: 'Products', href: '#products' },
-    { name: 'Services', href: '#services' },
-    { name: 'Expertise', href: '#expertise' },
-    { name: 'Systems', href: '#systems' },
-    { name: 'Technical Guidance', href: '#technical' },
+    { name: 'Products', href: '/#products' },
+    { name: 'Services', href: '/#services' },
+    { name: 'Expertise', href: '/#expertise' },
+    { name: 'Systems', href: '/#systems' },
+    { name: 'Technical Guidance', href: '/#technical' },
     { name: 'Career', href: '/career' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Contact', href: '/#contact' },
   ];
 
   return (
