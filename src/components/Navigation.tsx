@@ -11,7 +11,29 @@ const Navigation = () => {
       setIsScrolled(window.scrollY > 50);
     };
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    const handleAnchorClick = (e: Event) => {
+      const target = e.target as HTMLAnchorElement;
+      if (
+        target.tagName === "A" &&
+        target.getAttribute("href")?.startsWith("/#")
+      ) {
+        const hash = target.getAttribute("href")!.split("#")[1];
+        if (window.location.pathname === "/") {
+          const el = document.getElementById(hash);
+          if (el) {
+            e.preventDefault();
+            el.scrollIntoView({ behavior: "smooth" });
+          }
+        }
+      }
+    };
+    document.addEventListener("click", handleAnchorClick);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      document.removeEventListener("click", handleAnchorClick);
+    };
   }, []);
 
   const navItems = [
@@ -25,9 +47,8 @@ const Navigation = () => {
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      isScrolled ? 'bg-background/95 backdrop-blur-md shadow-industrial' : 'bg-transparent'
-    }`}>
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-background/95 backdrop-blur-md shadow-industrial' : 'bg-transparent'
+      }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
@@ -49,7 +70,19 @@ const Navigation = () => {
                 {item.name}
               </a>
             ))}
-            <Button variant="quote" size="sm">
+            <Button
+              variant="quote"
+              size="sm"
+              onClick={async () => {
+                if (window.location.pathname === "/") {
+                  const el = document.getElementById("contact");
+                  if (el) el.scrollIntoView({ behavior: "smooth" });
+                  else window.location.hash = "#contact";
+                } else {
+                  window.location.href = "/#contact";
+                }
+              }}
+            >
               Request Quote
             </Button>
           </div>
@@ -60,11 +93,11 @@ const Navigation = () => {
               onClick={() => setIsOpen(!isOpen)}
               className="text-foreground hover:text-accent transition-colors"
             >
-                {isOpen ? (
+              {isOpen ? (
                 <X className={`h-6 w-6 ${isScrolled ? 'text-foreground' : 'text-white'}`} />
-                ) : (
+              ) : (
                 <Menu className={`h-6 w-6 ${isScrolled ? 'text-foreground' : 'text-white'}`} />
-                )}
+              )}
             </button>
           </div>
         </div>

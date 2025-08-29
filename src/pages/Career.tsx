@@ -159,21 +159,32 @@ const Career = () => {
               in a dynamic, supportive environment with excellent opportunities.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="hero" size="lg">
+              <Button
+                variant="hero"
+                size="lg"
+                onClick={() => {
+                  const el = document.getElementById("openings");
+                  if (el) {
+                    el.scrollIntoView({ behavior: "smooth" });
+                  } else {
+                    window.location.hash = "#openings";
+                  }
+                }}
+              >
                 <FileText className="mr-2 h-5 w-5" />
                 View Open Positions
               </Button>
-              <Button variant="secondary" size="lg">
+              {/* <Button variant="secondary" size="lg">
                 <Mail className="mr-2 h-5 w-5" />
                 Submit Resume
-              </Button>
+              </Button> */}
             </div>
           </div>
         </div>
       </section>
 
       {/* Job Openings */}
-      <section className="py-20 bg-background">
+      <section id="openings" className="py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
@@ -247,8 +258,7 @@ const Career = () => {
                     </div>
 
                     <Button variant="industrial" className="w-full group">
-                      Apply for this Position
-                      <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
+                      Send CV to careers@singmech.sg
                     </Button>
                   </CardContent>
                 </Card>
@@ -346,12 +356,12 @@ const Career = () => {
           <p className="text-xl mb-8 text-primary-foreground/90">
             Don't see the perfect role? We're always looking for talented individuals to join our team.
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="flex items-center justify-center">
               <Mail className="h-5 w-5 mr-3 text-accent" />
               <div>
                 <div className="font-semibold">Email Us</div>
-                <div className="text-primary-foreground/80">careers@singmech.com.sg</div>
+                <div className="text-primary-foreground/80">careers@singmech.sg</div>
               </div>
             </div>
             <div className="flex items-center justify-center">
@@ -362,14 +372,14 @@ const Career = () => {
               </div>
             </div>
           </div>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          {/* <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button variant="hero" size="lg">
               Submit Your Resume
             </Button>
             <Button variant="secondary" size="lg">
               Schedule Interview
             </Button>
-          </div>
+          </div> */}
         </div>
       </section>
 

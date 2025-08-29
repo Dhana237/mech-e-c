@@ -23,7 +23,7 @@ const Contact = () => {
     {
       icon: Mail,
       title: 'Email',
-      details: 'info@singmech.com.sg',
+      details: 'singmech@ec.sg',
       subtitle: 'Quick Response Guaranteed'
     },
     {

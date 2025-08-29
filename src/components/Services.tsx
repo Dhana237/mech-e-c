@@ -91,10 +91,10 @@ const Services = () => {
                       </li>
                     ))}
                   </ul>
-                  <Button variant="outline" size="sm" className="w-full group-hover:border-accent hover:text-white">
+                  {/* <Button variant="outline" size="sm" className="w-full group-hover:border-accent hover:text-white">
                     Learn More
                     <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
+                  </Button> */}
                 </CardContent>
               </Card>
             );

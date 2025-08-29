@@ -4,10 +4,10 @@ import { Button } from "@/components/ui/button";
 
 const Footer = () => {
   const quickLinks = [
-    { name: 'About Us', href: '#about' },
-    { name: 'Products', href: '#products' },
-    { name: 'Services', href: '#services' },
-    { name: 'Contact', href: '#contact' }
+    { name: 'About Us', href: '/#about' },
+    { name: 'Products', href: '/#products' },
+    { name: 'Services', href: '/#services' },
+    { name: 'Contact', href: '/#contact' }
   ];
 
   const services = [
@@ -50,7 +50,7 @@ const Footer = () => {
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="h-4 w-4 text-accent" />
-                <span className="text-sm">info@singmech.com.sg</span>
+                <span className="text-sm">singmech@ec.sg</span>
               </div>
               <div className="flex items-center space-x-3">
                 <MapPin className="h-4 w-4 text-accent" />
@@ -103,7 +103,7 @@ const Footer = () => {
                 </li>
               ))}
             </ul>
-            <Button variant="hero" size="sm" className="w-full">
+            <Button onClick={() => {window.location.href = "/#contact"}} variant="hero" size="sm" className="w-full">
               Request Quote
             </Button>
           </div>
@@ -127,7 +127,7 @@ const Footer = () => {
         <div className="border-t border-primary-light py-6">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="text-primary-foreground/60 text-sm mb-4 md:mb-0">
-              © 2024 SING MECH E&C PTE LTD. All rights reserved.
+              © 2025 SING MECH E&C PTE LTD. All rights reserved.
             </div>
             <div className="flex space-x-6 text-sm">
               <a href="#" className="text-primary-foreground/60 hover:text-accent transition-colors duration-300">
