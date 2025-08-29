@@ -30,12 +30,27 @@ const Hero = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button variant="hero" size="lg" className="text-lg px-8 py-3">
+            <Button
+              variant="hero"
+              size="lg"
+              className="text-lg px-8 py-3"
+              onClick={() => {
+              const el = document.getElementById('products');
+              if (el) {
+                el.scrollIntoView({ behavior: 'smooth' });
+              }
+              }}
+            >
               Get Started
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
             
-            <Button variant="outline" size="lg" className="text-lg px-8 py-3 border-white text-white hover:bg-white hover:text-primary">
+            <Button
+              variant="outline"
+              size="lg"
+              className="text-lg px-8 py-3 border-white text-white hover:bg-white hover:text-primary"
+              onClick={() => window.open('tel:+6561234567')}
+            >
               <Phone className="mr-2 h-5 w-5" />
               Contact Us
             </Button>
