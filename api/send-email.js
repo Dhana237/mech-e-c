@@ -11,7 +11,7 @@ export default async function handler(req, res) {
 
   try {
     await sendgrid.send({
-      to: "your-verified-email@gmail.com", // must match verified sender
+      to: {email}, // must match verified sender
       from: "signmechec@gmail.com", // must be verified in SendGrid
       subject: `New message from ${email}`,
       text: message,
