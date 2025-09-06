@@ -1,44 +1,67 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { 
-  Phone, 
-  Mail, 
-  MapPin, 
-  Clock,
-  MessageCircle,
-  Send
-} from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, MessageCircle, Send } from "lucide-react";
 
 const Contact = () => {
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [status, setStatus] = useState("");
+
   const contactInfo = [
     {
       icon: Phone,
-      title: 'Phone',
-      details: '+65 6123 4567',
-      subtitle: '24/7 Emergency Service'
+      title: "Phone",
+      details: "+65 6123 4567",
+      subtitle: "24/7 Emergency Service",
     },
     {
       icon: Mail,
-      title: 'Email',
-      details: 'singmech@ec.sg',
-      subtitle: 'Quick Response Guaranteed'
+      title: "Email",
+      details: "singmech@ec.sg",
+      subtitle: "Quick Response Guaranteed",
     },
     {
       icon: MapPin,
-      title: 'Location',
-      details: 'Singapore Industrial Area',
-      subtitle: 'Strategic Location for Fast Service'
+      title: "Location",
+      details: "Singapore Industrial Area",
+      subtitle: "Strategic Location for Fast Service",
     },
     {
       icon: Clock,
-      title: 'Operating Hours',
-      details: 'Mon - Sat: 8AM - 6PM',
-      subtitle: 'Emergency Service Available'
-    }
+      title: "Operating Hours",
+      details: "Mon - Sat: 8AM - 6PM",
+      subtitle: "Emergency Service Available",
+    },
   ];
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus("Sending...");
+
+    try {
+      const res = await fetch("/api/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, message }),
+      });
+
+      if (res.ok) {
+        setStatus("Email sent successfully!");
+        setEmail("");
+        setMessage("");
+      } else {
+        setStatus("Failed to send email");
+      }
+    } catch (err) {
+      setStatus("Error sending email");
+    }
+  };
+  
+
 
   return (
     <section id="contact" className="py-20 bg-muted/30">
@@ -48,8 +71,8 @@ const Contact = () => {
             Get In <span className="text-accent">Touch</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Ready to service your heavy machinery? Contact us today for professional 
-            maintenance and repair solutions
+            Ready to service your heavy machinery? Contact us today for
+            professional maintenance and repair solutions
           </p>
         </div>
 
@@ -72,9 +95,15 @@ const Contact = () => {
                         <Icon className="h-5 w-5 text-accent" />
                       </div>
                       <div>
-                        <h4 className="font-semibold text-foreground">{info.title}</h4>
-                        <p className="text-foreground font-medium">{info.details}</p>
-                        <p className="text-sm text-muted-foreground">{info.subtitle}</p>
+                        <h4 className="font-semibold text-foreground">
+                          {info.title}
+                        </h4>
+                        <p className="text-foreground font-medium">
+                          {info.details}
+                        </p>
+                        <p className="text-sm text-muted-foreground">
+                          {info.subtitle}
+                        </p>
                       </div>
                     </div>
                   );
@@ -89,7 +118,10 @@ const Contact = () => {
                 <p className="mb-4 opacity-90">
                   Call us now for immediate assistance and competitive pricing
                 </p>
-                <Button variant="outline" className="w-full border-white text-white hover:bg-white hover:text-accent">
+                <Button
+                  variant="outline"
+                  className="w-full border-white text-white hover:bg-white hover:text-accent"
+                >
                   <Phone className="mr-2 h-4 w-4" />
                   Call Now
                 </Button>
@@ -105,11 +137,12 @@ const Contact = () => {
                   Request a Quote
                 </CardTitle>
                 <p className="text-muted-foreground">
-                  Fill out the form below and we'll get back to you within 24 hours
+                  Fill out the form below and we'll get back to you within 24
+                  hours
                 </p>
               </CardHeader>
               <CardContent>
-                <form className="space-y-6">
+                <form className="space-y-6" onSubmit={handleSubmit}>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <label className="text-sm font-medium text-foreground mb-2 block">
@@ -130,7 +163,12 @@ const Contact = () => {
                       <label className="text-sm font-medium text-foreground mb-2 block">
                         Email Address *
                       </label>
-                      <Input type="email" placeholder="Enter your email" />
+                      <Input
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        type="email"
+                        placeholder="Enter your email"
+                      />
                     </div>
                     <div>
                       <label className="text-sm font-medium text-foreground mb-2 block">
@@ -149,7 +187,9 @@ const Contact = () => {
                       <option value="maintenance">Regular Maintenance</option>
                       <option value="repair">Equipment Repair</option>
                       <option value="overhaul">Complete Overhaul</option>
-                      <option value="consultation">Technical Consultation</option>
+                      <option value="consultation">
+                        Technical Consultation
+                      </option>
                       <option value="emergency">Emergency Service</option>
                     </select>
                   </div>
@@ -165,7 +205,9 @@ const Contact = () => {
                     <label className="text-sm font-medium text-foreground mb-2 block">
                       Message *
                     </label>
-                    <Textarea 
+                    <Textarea
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
                       placeholder="Please describe your requirements in detail..."
                       rows={4}
                     />
