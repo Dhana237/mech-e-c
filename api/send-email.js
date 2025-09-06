@@ -8,6 +8,8 @@ export default async function handler(req, res) {
   }
 
   const { email, message } = req.body;
+  console.log(process.env.SENDGRID_API);
+  
 
   try {
     await sendgrid.send({
