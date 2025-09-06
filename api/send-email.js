@@ -1,6 +1,6 @@
 import sendgrid from "@sendgrid/mail";
 
-sendgrid.setApiKey(process.env.SENDGRID_API);
+sendgrid.setApiKey(process.env.SENDGRID_API_KEY);
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
@@ -8,7 +8,7 @@ export default async function handler(req, res) {
   }
 
   const { email, message } = req.body;
-  console.log(process.env.SENDGRID_API);
+  console.log(process.env.SENDGRID_API_KEY);
   
 
   try {
